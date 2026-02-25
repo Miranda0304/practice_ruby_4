@@ -1,0 +1,22 @@
+services:
+  web:
+    container_name: practice_api
+    build: .
+    command: bash -c "bundle exec rails db:prepare && bundle exec rails s -b 0.0.0.0 -p 3000"
+    volumes:
+      # - .:/app
+      # Real time sync for development
+      - /home/miranda/Projects/Courses/RubyOnRails/practice:/app
+    ports:
+      - "3000:3000"
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+    environment:
+      #DATABASE_URL: postgresql://localhost:5432/practice_db?user=miranda&password=root
+      DATABASE_URL: postgresql://miranda:root@192.168.3.8:5432/practice_db
+      #JWT_SECRET_KEY: abc
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
