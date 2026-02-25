@@ -15,7 +15,7 @@ class Users::UserRepository
     user.destroy!
   end
 
-  def soft_delete(user)
+  def inactive(user)
     user.update!(is_active: false)
   end
 end

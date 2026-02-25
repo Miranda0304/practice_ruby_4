@@ -10,7 +10,7 @@ module Users
     end
 
     def validate!(params)
-      raise ArgumentError, "email required" if params[:email].blank?
+      raise ArgumentError, "email required." if params[:email].blank?
     end
   end
 end

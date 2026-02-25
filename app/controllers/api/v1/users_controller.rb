@@ -24,8 +24,8 @@ class Api::V1::UsersController < ApplicationController
     head :no_content
   end
 
-  def destroy_logic
-    Users::SoftDeleteUser.new.call(params[:user_id])
+  def inactive
+    Users::InactiveUser.new.call(params[:user_id])
     head :no_content
   end
 
