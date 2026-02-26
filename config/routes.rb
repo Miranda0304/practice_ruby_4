@@ -10,11 +10,18 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      # USERS
       resources :users, only: %i[index show create update destroy] do
         patch :inactive
       end
 
+      # POSTS
       resources :posts, only: %i[index show create update destroy] do
+        patch :soft_delete
+      end
+
+      # COMMENTS
+      resources :comments, only: %i[index create update destroy] do
         patch :soft_delete
       end
     end

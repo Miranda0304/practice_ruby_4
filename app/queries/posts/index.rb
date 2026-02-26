@@ -22,7 +22,7 @@ module Posts
 
     def filter_by_user
       return unless @filters.key?(:user_id)
-      @scope = @scope.where(user_id: @filters[:user_id])
+      @scope = @scope.active
     end
   end
 end

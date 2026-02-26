@@ -6,9 +6,11 @@ module Posts
     end
 
     def call(id)
-      post = @find_post.call(id)
-      raise AlreadySoftDeletedError, "Post already soft deleted." if post.is_deleted?
-      @repository.soft_delete(post)
+      ActiveRecord::Base.transaction do
+        post = @find_post.call(id)
+        raise AlreadySoftDeletedError, "Post already soft deleted." if post.is_deleted?
+        @repository.soft_delete(post)
+      end
     end
   end
 
