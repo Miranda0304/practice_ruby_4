@@ -6,7 +6,7 @@ module Posts
     end
 
     def call
-      @scope = @scope.where(is_deleted: false)
+      @scope = @scope.no_deleted
       filter_by_active
       order_result
     end
