@@ -24,6 +24,8 @@ Rails.application.routes.draw do
       resources :comments, only: %i[index create update destroy] do
         patch :soft_delete
       end
+
+      resources :post_likes, only: %i[create destroy]
     end
   end
 end
