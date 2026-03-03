@@ -1,13 +1,12 @@
 module Comments
   class SoftDelete
-    def initialize(find_comment: Comments::FindComment.new, repository: Comments::CommentsRepository.new)
-      @find_comment = find_comment
+    def initialize(repository: Comments::CommentsRepository.new)
       @repository = repository
     end
 
     def call(id)
       ActiveRecord::Base.transaction do
-        comment = @find_comment.call(id)
+        comment = @repository.find(id)
         raise AlreadySoftDeletedError, "Comment already soft deleted." if comment.is_deleted?
         @repository.soft_delete(comment)
       end

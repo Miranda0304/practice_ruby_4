@@ -3,6 +3,10 @@ class Comments::CommentsRepository
     @model = model
   end
 
+  def find(id)
+    @model.find(id)
+  end
+
   def create(attrs)
     @model.create!(attrs)
   end

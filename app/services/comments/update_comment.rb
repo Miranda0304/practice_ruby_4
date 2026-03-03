@@ -1,12 +1,11 @@
 module Comments
   class UpdateComment
-    def initialize(find_comment: Comments::FindComment.new, repository: Comments::CommentsRepository.new)
-      @find_comment = find_comment
+    def initialize(repository: Comments::CommentsRepository.new)
       @repository = repository
     end
 
     def call(id, params)
-      comment = @find_comment.call(id)
+      comment = @repository.find(id)
       @repository.update(comment, params)
     end
   end
