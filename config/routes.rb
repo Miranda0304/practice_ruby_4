@@ -25,7 +25,14 @@ Rails.application.routes.draw do
         patch :soft_delete
       end
 
+      # POST LIKES
       resources :post_likes, only: %i[index create destroy]
+
+      # RAFFLES
+      resources :raffles, only: %i[index show create update destroy] do
+        patch :finish
+        patch :soft_delete
+      end
     end
   end
 end

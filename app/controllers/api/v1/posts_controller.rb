@@ -1,6 +1,6 @@
 class Api::V1::PostsController < ApplicationController
   def index
-    posts = Posts::Index.new(filters: { is_active: false }).call
+    posts = Posts::Index.new.call
     render json: posts, status: :ok
   end
 

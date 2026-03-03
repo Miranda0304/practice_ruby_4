@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_26_233750) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_03_183805) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -46,6 +46,26 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_26_233750) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "raffles", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "description"
+    t.date "end_date"
+    t.integer "limit_to_finish"
+    t.integer "number_per_page", default: 50
+    t.integer "number_winner"
+    t.decimal "price", precision: 10, scale: 2, null: false
+    t.string "prize"
+    t.date "start_date"
+    t.integer "status", default: 1
+    t.string "title", null: false
+    t.integer "total_numbers", default: 0
+    t.datetime "updated_at", null: false
+    t.string "url_evidence"
+    t.string "url_icon"
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_raffles_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.integer "age"
     t.datetime "created_at", null: false
@@ -62,4 +82,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_26_233750) do
   add_foreign_key "post_likes", "posts"
   add_foreign_key "post_likes", "users"
   add_foreign_key "posts", "users"
+  add_foreign_key "raffles", "users"
 end
