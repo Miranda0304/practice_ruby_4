@@ -1,6 +1,6 @@
 class Api::V1::RafflesController < ApplicationController
   def index
-    raffles = Raffles::Index.new.call
+    raffles = Raffles::Index.new(filters: { status: params[:status] }).call
     render json: raffles, status: :ok
   end
 
