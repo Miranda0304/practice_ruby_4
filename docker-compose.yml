@@ -6,7 +6,7 @@ services:
     volumes:
       # - .:/app
       # Real time sync for development
-      - /home/miranda/Projects/Courses/RubyOnRails/practice:/app
+      - /home/miranda/Projects/Courses/RubyOnRails/practice_ruby_4:/app
     ports:
       - "3000:3000"
     deploy:
